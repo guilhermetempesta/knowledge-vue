@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export const baseApiUrl = 'http://localhost:3030' 
+export const baseApiUrl = process.env.VUE_APP_BASE_API_URL
 
 export function showError(e) {
   if (e && e.response && e.response.data) {
