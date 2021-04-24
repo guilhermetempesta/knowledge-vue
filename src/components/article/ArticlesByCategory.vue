@@ -33,6 +33,18 @@ export default {
       loadMore: true
     }    
   },
+  watch: {
+    // vai ficar monitorando as rotas
+    $route(to) {
+      this.category.id = to.params.id
+      this.articles = []
+      this.page = 1
+      this.loadMore = true
+
+      this.getCategory()
+      this.getArticles()
+    }
+  },
   methods: {
     getCategory() {
       const url = `${baseApiUrl}/categories/${this.category.id}`
