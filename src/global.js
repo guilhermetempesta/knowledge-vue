@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export const baseApiUrl = process.env.VUE_APP_BASE_API_URL
+export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
 
 export function showError(e) {
   if (e && e.response && e.response.data) {
