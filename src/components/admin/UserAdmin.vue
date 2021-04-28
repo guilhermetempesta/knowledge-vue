@@ -118,7 +118,12 @@ export default {
       this.loadUsers()
     },
     save() {
-      this.user.role = (this.checked) ? 'admin' : 'user'
+      if (this.checked) {
+        this.user.role = 'admin'
+      } else {
+        this.user.role = 'user'
+      }
+
       const method = this.user.id ? 'put' : 'post'
       const id = this.user.id ? `/${this.user.id}` : ''
       axios[method](`${baseApiUrl}/users${id}`, this.user)
@@ -140,7 +145,8 @@ export default {
     loadUser(user, mode = 'edit') {
       this.mode = mode
       this.user = { ...user }
-      this.checked = (this.user.role==="admin") 
+      this.checked = (this.user.role=="admin")
+
     }
   },
   mounted() {

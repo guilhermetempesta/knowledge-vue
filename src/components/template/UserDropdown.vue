@@ -1,14 +1,14 @@
 <template>
   <div class="user-dropdown">
     <div class="user-button">
-      <span class="d-none d-sm-block">{{ user.name }}</span>
+      <span class="d-none d-sm-block">{{ user.firstName }}</span>
       <div class="user-dropdown-img">
         <Gravatar :email="user.email" alt="User" />
       </div>
       <i class="fa fa-angle-down"></i>
     </div>
     <div class="user-dropdown-content">
-      <router-link to="/admin">
+      <router-link to="/admin" v-if="user.role=='admin'">
         <i class="fa fa-cogs"></i> Administração
       </router-link>
       <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
