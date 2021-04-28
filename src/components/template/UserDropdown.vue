@@ -11,19 +11,41 @@
       <router-link to="/admin">
         <i class="fa fa-cogs"></i> Administração
       </router-link>
-      <a href><i class="fa fa-sign-out"></i> Sair</a>
+      <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
     </div>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+import { baseApiUrl, showError, userKey } from '@/global'
 import { mapState } from 'vuex'
 import Gravatar from 'vue-gravatar'
 
 export default {
   name: 'UserDropdown',
   components: { Gravatar },
-  computed: mapState(['user'])
+  computed: mapState(['user']),
+  methods: {
+    async logout() {
+      // pegar o refresh token no localStorage
+      const json = localStorage.getItem(userKey)
+			const userData = JSON.parse(json)
+
+      // usar o axios para fazer o logout no backend
+      axios.post(`${baseApiUrl}/logout`, userData)
+      .then( res =>{        
+        // remover informacoes armazenadas no localStorage do browser
+        localStorage.removeItem(userKey)
+        // limpar dados do usuário no store
+        this.$store.commit('setUser', null)
+        // carreger tela de login
+        this.$router.push({ name: 'auth' })
+      })
+      .catch(showError)
+    }
+  }
 }
 </script>
 

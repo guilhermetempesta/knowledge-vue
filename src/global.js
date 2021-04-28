@@ -1,8 +1,11 @@
 import Vue from 'vue'
 
+export const userKey = '__knowledge_user'
 export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
+// export const baseApiUrl = "http://localhost:3030"
 
 export function showError(e) {
+  console.log(e)
   if (e && e.response && e.response.data) {
     Vue.toasted.global.defaultError({ message: e.response.data.message })
   } else if (typeof e==='string') {
@@ -21,3 +24,12 @@ export function showSuccessMsg(e) {
     Vue.toasted.global.defaultSuccess()
   }
 }
+
+export function decodeToken(token) {
+  let base64Url = token.split('.')[1]; // pega os dados do payload
+  let base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
+}
+
+
+export default { baseApiUrl, showError, userKey }
