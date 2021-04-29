@@ -56,5 +56,13 @@
   "main": "babel.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermetempesta/knowledge-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guilhermetempesta/knowledge-vue/issues"
+  },
+  "homepage": "https://github.com/guilhermetempesta/knowledge-vue#readme"
 }

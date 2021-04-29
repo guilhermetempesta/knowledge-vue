@@ -4,7 +4,8 @@
       <i class="fa fa-lg" :class="icon"></i>
     </a>
     <h1 class="title">
-      <router-link to="/">{{ title }}</router-link>
+      <router-link v-if="loggedUser" to="/">{{ title }}</router-link>
+      <router-link v-else to="">{{ title }}</router-link>
     </h1>
     <UserDropdown v-if="!hideUserDropdown" />
   </header>
@@ -23,6 +24,10 @@ export default {
   computed: {
     icon() {
       return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down"
+    },
+    loggedUser() {
+      console.log(this.$store.state.user)
+      return this.$store.state.user
     }
   },
   methods: {
