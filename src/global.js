@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
 export const userKey = '__knowledge_user'
-// export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
-export const baseApiUrl = "http://localhost:3030"
+export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
+// export const baseApiUrl = "http://localhost:3030"
 
 export function showError(e) {
   console.log(e)
