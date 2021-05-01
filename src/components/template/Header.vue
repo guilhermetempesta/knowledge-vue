@@ -26,7 +26,6 @@ export default {
       return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down"
     },
     loggedUser() {
-      console.log(this.$store.state.user)
       return this.$store.state.user
     }
   },

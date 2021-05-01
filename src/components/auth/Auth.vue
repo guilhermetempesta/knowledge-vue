@@ -17,22 +17,17 @@
 
       <div class="auth-links">
         <span v-if="showSignup">
-          <a href @click.prevent="showSignup = !showSignup">Já é cadastrado? Acesse o Login!</a> 
+          <a href @click.prevent="showSignup = !showSignup" @click="reset">Já é cadastrado? Acesse o Login!</a> 
         </span>
         <span class="auth-link-signup" v-else>
           <span class="link-signup" >
-            <a href @click.prevent="showSignup = !showSignup">Não é cadastrado? Inscreva-se</a>
+            <a href @click.prevent="showSignup = !showSignup" @click="reset">Não é cadastrado? Inscreva-se</a>
           </span>
-          <span class="link-forgot-pass">
+          <!-- <span class="link-forgot-pass">
             <a href="">Recuperar senha</a>
-          </span>
+          </span> -->
         </span>
       </div>
-
-      <!-- <a href @click.prevent="showSignup = !showSignup">
-        <span v-if="showSignup">Já é cadastrado? Acesse o Login!</span>
-        <span v-else>Não é cadastrado? Inscreva-se aqui!</span>
-      </a> -->
     </div>
   </div>  
 </template>
@@ -50,6 +45,9 @@ export default {
     }
   },
   methods: {
+    reset() {
+      this.user = {}
+    },
     signin() {
       axios.post(`${baseApiUrl}/login`, this.user)
         .then(res => {
@@ -57,7 +55,6 @@ export default {
           const data = decodeToken(res.headers['authorization'])
           data.accessToken = res.headers['authorization']
           data.refreshToken = res.data.refreshToken
-          console.log(data)
           // setar usuario na store
           this.$store.commit('setUser', data)
           // setar dados do usuario no localStorage

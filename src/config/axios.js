@@ -1,9 +1,11 @@
 import axios from 'axios'
 
 axios.interceptors.response.use(
-  response => response, 
-  error => {
-    if (error.response.status === 401) {
+  res => res, 
+  err => {
+    if (err.response.status === 401 && 
+        (err.response.data.name === 'TokenExpiredError' || 
+         err.response.data.name === 'JsonWebTokenError')) {
       window.location = '/'
     } else { 
       return Promise.reject(err)

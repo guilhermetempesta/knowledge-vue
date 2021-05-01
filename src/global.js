@@ -1,11 +1,10 @@
 import Vue from 'vue'
 
 export const userKey = '__knowledge_user'
-export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
-// export const baseApiUrl = "http://localhost:3030"
+// export const baseApiUrl = "https://api-gtempesta-nodejs.herokuapp.com"
+export const baseApiUrl = "http://localhost:3030"
 
 export function showError(e) {
-  console.log(e)
   if (e && e.response && e.response.data) {
     Vue.toasted.global.defaultError({ message: e.response.data.message })
   } else if (typeof e==='string') {
